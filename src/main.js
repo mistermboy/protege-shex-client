@@ -7,6 +7,9 @@ yate.setSize(null,550);
 yashe.setSize(null,550);
 yasme.setSize(null,100);
 
+
+mdc.ripple.MDCRipple.attachTo(document.querySelector('.foo-button'));
+
 function sendToJava () {
     updateTable();
     javaConnector.toLowerCase(yashe.getValue());
