@@ -6,12 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>YASHE</title>
 
+  <!--EDITOR STYLES-->
   <link href="./lib/yashe.min.css" rel="stylesheet" type="text/css" />
   <link href="./lib/yate.min.css" rel="stylesheet" type="text/css" />
   <link href="./lib/yasme.min.css" rel="stylesheet" type="text/css" />
 
+  <!--Bootstrap-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!--Bootstrap-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+  <link href="./css/style.css" rel="stylesheet" type="text/css" />
+
   </head>
   <body>
 
@@ -22,53 +33,52 @@
       <div id="yasheContainer"></div>
     </div>
     <div id="yasmeContainer"></div>
+    <div id="validateZone" class="validate">
+      <div class="validateHeader">
+        <h1>Validate</h1>
+        <button onclick="sendToJava();">to lower case</button>
+      </div>
+      <table id="validateTable" class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Node</th>
+            <th scope="col">Shape</th>
+            <th scope="col">Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
- <button onclick="sendToJava();">to lower case</button>
-
-    
+ 
+ 
+  <!--EDITOR SCRIPTS-->
   <script src="./lib/yashe.bundled.min.js"></script>
   <script src="./lib/yate.bundled.min.js"></script>
   <script src="./lib/yasme.bundled.min.js"></script>
+  <script src="./src/main.js"></script>
 
-  <script type="text/javascript">
-
-    var yate = YATE(document.getElementById('yateContainer'));
-    var yashe = YASHE(document.getElementById('yasheContainer'));
-    var yasme = YASME(document.getElementById('yasmeContainer'));
-	//yashe.setOption("fullScreen", true);
-	
-	function sendToJava () {
-        javaConnector.toLowerCase(yashe.getValue());
-    };
-    
-    var jsConnector = {
-       
-    };
-
-    function getJsConnector() {
-        return jsConnector;
-    };
-
-  </script>
-
-<style>
-
-
-  .globalContainer{
-    display: grid;
-    grid-template-columns: 100%;
-  }
-
-  .topContainer{
-    display: grid;
-    grid-template-columns: 50% 50%;
-  }
-
-	.CodeMirror {
-      font-size: 21px !important;
-}
-</style>
 
 </body>
 </html>
