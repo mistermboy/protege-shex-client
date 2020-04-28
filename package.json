@@ -1,0 +1,97 @@
+{
+  "name": "protege-shex-client",
+  "description": "protege-shex-client",
+  "version": "1.0.0",
+  "main": "src/main.js",
+  "license": "MIT",
+  "author": "Pablo Menéndez",
+  "scripts": {
+    "start": "gulp serve",
+    "dev": "gulp serve",
+    "build": "gulp",
+    "test": "jest",
+    "patch": "gulp patch",
+    "minor": "gulp minor",
+    "major": "gulp major",
+    "update-interactive": "npm-check --skip-unused -u"
+  },
+  "devDependencies": {
+    "bootstrap-sass": "^3.3.7",
+    "browserify": "^13.1.0",
+    "browserify-shim": "^3.8.12",
+    "browserify-transform-tools": "^1.6.0",
+    "clipboard": "^2.0.4",
+    "eslint": "^6.4.0",
+    "eslint-config-google": "^0.14.0",
+    "exorcist": "^0.4.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-bump": "^2.2.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect": "^4.2.0",
+    "gulp-cssimport": "^3.1.0",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-embedlr": "^0.5.2",
+    "gulp-filter": "^4.0.0",
+    "gulp-git": "^2.4.1",
+    "gulp-jsvalidate": "^2.1.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-notify": "^2.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-streamify": "1.0.2",
+    "gulp-tag-version": "^1.3.0",
+    "jest": "^24.9.0",
+    "node-sass": "^3.8.0",
+    "require-dir": "^0.3.2",
+    "run-sequence": "^1.2.2",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "~1.1.0",
+    "vinyl-transform": "1.0.0",
+    "watchify": "^3.7.0"
+  },
+  "bugs": "https://github.com/weso/YASHE/issues/",
+  "keywords": [
+    "JavaScript",
+    "ShEx",
+    "Editor",
+    "Semantic Web",
+    "Linked Data"
+  ],
+  "maintainers": [
+    {
+      "name": "Pablo Menéndez",
+      "email": "pabloyo97@hotmail.com",
+      "web": "https://github.com/mistermboy"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/weso/YASHE.git"
+  },
+  "dependencies": {
+    "codemirror": "5.17.0",
+    "file-reader": "^1.1.1",
+    "gulp-uglify": "^3.0.2",
+    "gulp-uglify-es": "^2.0.0",
+    "jquery": "^2.2.4",
+    "prettier": "^1.4.4",
+    "read-file": "^0.2.0",
+    "yasgui-utils": "^1.6.7"
+  },
+  "optionalShim": {
+    "codemirror": {
+      "require": "codemirror",
+      "global": "CodeMirror"
+    },
+    "jquery": {
+      "require": "jquery",
+      "global": "jQuery"
+    },
+    "../../lib/codemirror": {
+      "require": "codemirror",
+      "global": "CodeMirror"
+    }
+  }
+}
