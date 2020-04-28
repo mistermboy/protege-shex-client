@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>YASHE</title>
 
-  <link href="yashe.min.css" rel="stylesheet" type="text/css" />
-  <link href="yasqe.min.css" rel="stylesheet" type="text/css" />
-  <link href="yasme.min.css" rel="stylesheet" type="text/css" />
+  <link href="./lib/yashe.min.css" rel="stylesheet" type="text/css" />
+  <link href="./lib/yate.min.css" rel="stylesheet" type="text/css" />
+  <link href="./lib/yasme.min.css" rel="stylesheet" type="text/css" />
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   
@@ -18,7 +18,7 @@
   
   <div class="globalContainer">
     <div class="topContainer">
-      <div id="yasqeContainer"></div>
+      <div id="yateContainer"></div>
       <div id="yasheContainer"></div>
     </div>
     <div id="yasmeContainer"></div>
@@ -27,13 +27,13 @@
  <button onclick="sendToJava();">to lower case</button>
 
     
-  <script src="yashe.bundled.min.js"></script>
-  <script src="yasqe.bundled.min.js"></script>
-  <script src="yasme.bundled.min.js"></script>
+  <script src="./lib/yashe.bundled.min.js"></script>
+  <script src="./lib/yate.bundled.min.js"></script>
+  <script src="./lib/yasme.bundled.min.js"></script>
 
   <script type="text/javascript">
 
-    var yasqe = YASQE(document.getElementById('yasqeContainer'));
+    var yate = YATE(document.getElementById('yateContainer'));
     var yashe = YASHE(document.getElementById('yasheContainer'));
     var yasme = YASME(document.getElementById('yasmeContainer'));
 	//yashe.setOption("fullScreen", true);
