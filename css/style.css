@@ -38,3 +38,8 @@
     cursor: pointer;
     
 }
+
+.validateBtn:focus{
+    outline: none;
+    
+}
