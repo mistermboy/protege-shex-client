@@ -1,120 +1,50 @@
+   
 var yate = YATE(document.getElementById('yateContainer'));
-var yashe = YASHE(document.getElementById('yasheContainer'));
+var yashe = YASHE(document.getElementById('yasheContainer'),{
+  persisten:null,
+  showShareButton:false,
+  showValidateButton:false,
+});
 var yasme = YASME(document.getElementById('yasmeContainer'));
-//yashe.setOption("fullScreen", true);
 
-yate.setSize(null,550);
-yashe.setSize(null,550);
-yasme.setSize(null,100);
+yate.setSize(null,505);
+yashe.setSize(null,895);
+yasme.setSize(null,895);
 
-function sendToJava () {
-    updateTable();
-    javaConnector.toLowerCase(yashe.getValue());
-};
+yate.setValue(
+  `prefix :     <http://example.org/>
 
-var jsConnector = {
-    
-};
+:ex1 :p 1 .
+:ex2 :p 1,2 .
+:ex3 :p 1 .
+:ex4 :p 1,2 .
+:ex5 :p 1 .
+:ex6 :p 1,2 .
+:ex7 :p 1 .
+:ex8 :p 1,2 .`)
 
-function getJsConnector() {
-    return jsConnector;
-};
+yashe.setValue(
+  `PREFIX :       <http://example.org/>
+:S{
+ :p . 
+}`)
 
+yasme.setValue(
+  `:ex1@:S,:ex2@:S,:ex3@:S,:ex4@:S,:ex5@:S,:ex6@:S,:ex7@:S,:ex8@:S`)
 
-function updateTable(){
-
-        validate();
-
-        $('#validateTable').remove();
-        $('#validateZone').append(
-            $('<div class="table-responsive">'+
-                '<table id="validateTable" class="table table-striped">'+ 
-                '<thead id="thead" class="thead-dark">'+ 
-                    '<tr>'+ 
-                    '<th scope="col">Id</th>'+ 
-                    '<th scope="col">Node</th>'+ 
-                    '<th scope="col">Shape</th>'+ 
-                    '<th scope="col">Details</th>'+ 
-                    '</tr>'+ 
-                '</thead>'+ 
-                '<tbody id="tBody"/>'+
-                '</table>'+
-            '<div>'));
-
-            let obj = 
-
-             [
-                 {
-                     node:'<jhon>',
-                     shape:'<Person>',
-                     details:'conformant'
-                 },
-                 {
-                     node:'<Pluto>',
-                     shape:'<Person>',
-                     details:'nonconformant'
-                 }
-             ];
-            
-
-            for(let i in obj){
-                console.log(obj[i])
-                let succces = 'table-success';
-                let id = $('<td>').text("0");
-                let node = $('<td>').text(obj[i].node);
-                let shape = $('<td>').text(obj[i].shape)
-                let details = $('<td>').text(obj[i].details);
-                
-                if(obj[i].details == 'nonconformant'){
-                    succces = 'table-danger';
-                }
-
-                console.log(succces)
-
-                $('#tBody')
-                    .append(
-                      $('<tr class='+succces+'>')
-                      .append(id)
-                      .append(node)
-                      .append(shape)
-                      .append(details)
-                    ) 
-        
-            }
-               /*  let id = $('<td>').text("0");
-                let node = $('<td>').append());
-                let shape = showQualify(el.shape,data.shapesPrefixMap);
-                let details = $('<td>').append($('<details><pre>').text(el.reason));
-                if(typeof shape == 'object'){
-                shape = $('<td>').append(shape);
-                }else{
-                shape = $('<td>').text(shape);
-                }
-                
-
-                  $('#tBody')
-                    .append(
-                      $('<tr class='+succces+'>')
-                      .append(id)
-                      .append(node)
-                      .append(shape)
-                      .append(details)
-                    ) 
-                }) */
-}
 
 
 var validate = function(){
 
-console.log({yashe:yashe,yate:yate,yasme:yasme})
-
+  console.log('ee')
   let schemaContent = yashe.getValue();
+  let dataContent = yate.getValue();
   let shapeMapContent = yasme.getValue();
   
   var params ={
   "activeTab": "#dataTextArea",
   "dataFormat": "TURTLE",
-  "data": "",
+  "data": dataContent,
   "dataFormatTextArea": "TURTLE",
   "activeSchemaTab": "#schemaTextArea",
   "schemaEmbedded": false,
@@ -131,7 +61,6 @@ console.log({yashe:yashe,yate:yate,yasme:yasme})
 
 let formData = params2Form(params);
 
-
     axios({
             method: 'post',
             url: 'http://rdfshape.weso.es:8080/api/schema/validate',
@@ -140,70 +69,62 @@ let formData = params2Form(params);
             crossDomain: true
         }).then(response => response.data)
             .then((data) => {
-
-                console.log(data)
-
-               /*  $('#validateTable').remove();
-                $('#validateZone').append(
-                    $('<div class="table-responsive">'+
-                        '<table id="validateTable" class="table table-striped">'+ 
-                        '<thead id="thead" class="thead-dark">'+ 
-                            '<tr>'+ 
-                            '<th scope="col">Id</th>'+ 
-                            '<th scope="col">Node</th>'+ 
-                            '<th scope="col">Shape</th>'+ 
-                            '<th scope="col">Details</th>'+ 
-                            '</tr>'+ 
-                        '</thead>'+ 
-                        '<tbody id="tBody"/>'+
-                        '</table>'+
-                    '<div>'));
+              $('#log').text('pass')
+              $('#table').remove();
+              $('#validateZone').append(
+                $('<div id="table" class="table-responsive">'+
+                    '<table  class="table table-striped">'+ 
+                      '<thead id="thead" class="thead-dark">'+ 
+                        '<tr>'+ 
+                          '<th scope="col">Id</th>'+ 
+                          '<th scope="col">Node</th>'+ 
+                          '<th scope="col">Shape</th>'+ 
+                          '<th scope="col">Details</th>'+ 
+                        '</tr>'+ 
+                      '</thead>'+ 
+                      '<tbody id="tBody"/>'+
+                    '</table>'+
+                  '<div>')
+              )
               
-                Object.keys(data.shapeMap).map(s=>{
-                  var el = data.shapeMap[s];
-                  let succces = 'table-err';
-                  if(el.status == 'conformant')succces = 'table-success';
+              Object.keys(data.shapeMap).map(s=>{
+                var el = data.shapeMap[s];
+                let succces = 'table-danger';
+                if(el.status == 'conformant')succces = 'table-success';
 
-                  let id = $('<td>').text(s);
-                  let node = $('<td>').append(showQualify(el.node,data.nodesPrefixMap));
-                  let shape = showQualify(el.shape,data.shapesPrefixMap);
-                  let details = $('<td>').append($('<details><pre>').text(el.reason));
-                  if(typeof shape == 'object'){
-                    shape = $('<td>').append(shape);
-                  }else{
-                    shape = $('<td>').text(shape);
-                  }
-                
+                let id = $('<td>').text(s);
+                let node = $('<td>').text(el.node,data.nodesPrefixMap);
+                let shape =  $('<td>').text(el.shape,data.shapesPrefixMap);
+                let details = $('<td>').append($('<details><pre>').text(el.reason));
+   
 
-                  $('#tBody')
-                    .append(
-                      $('<tr class='+succces+'>')
-                      .append(id)
-                      .append(node)
-                      .append(shape)
-                      .append(details)
-                    ) 
-                })
+                $('#tBody')
+                  .append(
+                    $('<tr class='+succces+'>')
+                    .append(id)
+                    .append(node)
+                    .append(shape)
+                    .append(details)
+                  ) 
+              })
 
-                setTimeout(() => {
-                  $('#loader').hide();
-                  $('#modalContent').show();  
-                }, 500); */
                 
             })
             .catch(function (error) {
-                $('#loader').hide();
-                $('#modalContent').show();  
-                console.log('Error doing server request');
-                $('#modalContent').prepend(
-                  $('<div id="alertValidate" class="alert">').text('Something went wrong')
-                )
+              console.log(error)
+              $('#log').text(error.toString())
             });
 
 
  
 }
 
+
+function refresh(editor){
+  setTimeout(()=>{
+    editor.refresh();
+  },200)
+}
 
 
 var params2Form = function(params) {
